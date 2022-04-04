@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  myapp:
+    build: .
+    # image: 508154593707.dkr.ecr.us-west-1.amazonaws.com/golang-repo.1
+    image: golang-repo
+    environment: 
+      - MONGO_URL=mongodb
+    depends_on:
+      - mongodb
+    ports:
+      - 5500:5500
+
+  mongodb:
+    build: 
+        dockerfile: ./mongoDocker/Dockerfile
+    image: mongo-repo
+    # image: mongo:latest
+    #environment:
+      # MONGO_INITDB_ROOT_USERNAME: 
+      # MONGO_INITDB_ROOT_PASSWORD: 
+      #DATABASE_NAME: UsermanagementSystem
+    # volumes:
+    #   - mongodb_data_container:/data/db
+
+# volumes:
+#   mongodb_data_container:
